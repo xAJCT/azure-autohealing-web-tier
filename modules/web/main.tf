@@ -65,8 +65,9 @@ resource "azurerm_linux_virtual_machine_scale_set" "web" {
   resource_group_name = var.resource_group_name
   location            = var.location
 
-  sku       = var.vm_size
-  instances = var.instance_count
+  sku          = var.vm_size
+  instances    = var.instance_count
+  upgrade_mode = "Automatic"
 
   admin_username                  = "azureuser"
   disable_password_authentication = true
@@ -107,7 +108,6 @@ resource "azurerm_linux_virtual_machine_scale_set" "web" {
   automatic_instance_repair {
     enabled      = true
     grace_period = "PT10M"
-    action       = "Replace"
   }
 
   tags = var.tags
