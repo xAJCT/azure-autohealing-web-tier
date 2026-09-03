@@ -44,12 +44,3 @@ resource "azurerm_subnet_network_security_group_association" "web" {
   subnet_id                 = azurerm_subnet.web.id
   network_security_group_id = azurerm_network_security_group.web.id
 }
-
-module "network" {
-  source = "./modules/network"
-
-  resource_group_name = azurerm_resource_group.main.name
-  location            = var.location
-  name_prefix         = local.name_prefix
-  tags                = local.common_tags
-}

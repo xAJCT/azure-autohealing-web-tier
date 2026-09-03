@@ -15,3 +15,12 @@ resource "azurerm_resource_group" "main" {
 
   tags = local.common_tags
 }
+
+module "network" {
+  source = "./modules/network"
+
+  resource_group_name = azurerm_resource_group.main.name
+  location            = var.location
+  name_prefix         = local.name_prefix
+  tags                = local.common_tags
+}
