@@ -1,0 +1,11 @@
+# Example configuration values.
+# Copy this file to terraform.tfvars if you want to override defaults.
+
+project_name   = "autoheal"
+environment    = "demo"
+location       = "Australia East"
+vm_size        = "Standard_B1s"
+instance_count = 2
+
+# Default SSH key location on Linux/macOS/Windows OpenSSH
+ssh_public_key_path = "~/.ssh/id_ed25519.pub"
