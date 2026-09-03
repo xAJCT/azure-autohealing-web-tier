@@ -24,3 +24,20 @@ module "network" {
   name_prefix         = local.name_prefix
   tags                = local.common_tags
 }
+
+module "web" {
+  source = "./modules/web"
+
+  resource_group_name = azurerm_resource_group.main.name
+  location            = var.location
+  name_prefix         = local.name_prefix
+
+  subnet_id      = module.network.subnet_id
+  vm_size        = var.vm_size
+  instance_count = var.instance_count
+
+  ssh_public_key = file(pathexpand(var.ssh_public_key_path))
+  custom_data    = file("${path.module}/cloud-init.yaml")
+
+  tags = local.common_tags
+}
