@@ -32,3 +32,9 @@ variable "instance_count" {
     error_message = "The web tier must contain at least two VM instances."
   }
 }
+
+variable "ssh_public_key_path" {
+  description = "Path to the SSH public key used for VM administration"
+  type        = string
+  default     = "~/.ssh/id_ed25519.pub"
+}
