@@ -110,5 +110,29 @@ resource "azurerm_linux_virtual_machine_scale_set" "web" {
     grace_period = "PT10M"
   }
 
+  lifecycle {
+    ignore_changes = [instances]
+  }
+
+  tags = var.tags
+}
+
+resource "azurerm_monitor_autoscale_setting" "web" {
+  name                = "${var.name_prefix}-autoscale"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  target_resource_id  = azurerm_linux_virtual_machine_scale_set.web.id
+  enabled             = true
+
+  profile {
+    name = "maintain-capacity"
+
+    capacity {
+      default = var.instance_count
+      minimum = var.instance_count
+      maximum = var.instance_count
+    }
+  }
+
   tags = var.tags
 }
