@@ -91,6 +91,8 @@ Once the replacement passes the health probe, it returns to the load balancer ba
 
 The VM Scale Set is configured with two instances to maintain N+1 capacity.
 
+An Azure Monitor autoscale policy maintains a minimum capacity of two instances, restoring capacity if a VMSS instance is explicitly deleted.
+
 ## Assumptions
 
 - The workload is a stateless static NGINX web page.
